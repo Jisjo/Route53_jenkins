@@ -1,0 +1,64 @@
+#!/bin/bash
+
+clear
+echo -e "
+\e[93m
+\e[1m
+  ____             _       ____ _____ 
+ |  _ \ ___  _   _| |_ ___| ___|___ / 
+ | |_) / _ \| | | | __/ _ \___ \ |_ \ 
+ |  _ < (_) | |_| | ||  __/___) |__) |
+ |_| \_\___/ \__,_|\__\___|____/____/ 
+                                      
+\e[0m
+
+"
+
+cd /usr/local/route53
+
+echo -e "\vCHOOSE THE OPTION\v"
+echo -e "1. Add new DNS zone and records\n2. Add new Bitcoin Server Hostname\n3. Add new Rivalhost Server Hostname\n\n\nEnter the option:"
+read input
+
+case $input in
+
+1)
+
+echo -e "\vEnter Domain Name:" ; read domain;
+echo -e "Enter IP:" ; read ip;
+sleep 1
+echo -e "\n-> Creating Zone for $domain"
+aws route53 create-hosted-zone --name $domain --delegation-set-id  N3J3ITYEBIRAJ1 --caller-reference  "`date +%d%m%y%l%M`" --hosted-zone-config Comment="$domain" > out.txt
+
+id=$(cat out.txt | grep Location | cut -d "/" -f6 | cut -d '"' -f1| grep -oP '\b[A-Z0-9]+\b')
+sleep 1
+if [[ -z $id ]]
+then
+echo -e "\n-> \e[31m\e[1mZone not Created\e[0m"
+else
+echo -e "\n-> \e[32m\e[1mZone Created\e[0m"
+sleep 1
+echo -e "\n-> Creating DNS record for $domain"
+sed s/thisisatest.in/$domain/g record.json > $domain.json
+sed -i s/1.1.1.1/$ip/g $domain.json
+
+sleep 1
+aws route53 change-resource-record-sets --hosted-zone-id $id --change-batch file://$domain.json > out.txt
+dns_status=$(cat out.txt | grep PENDING)
+if [[ -z $dns_status ]]
+then
+echo -e "\n-> \e[31m\e[1mDNS record not Created\e[0m"
+else
+echo -e "\n-> \e[32m\e[1mDNS record Created\e[0m"
+rm -f out.txt $domain.json
+fi
+fi
+;;
+
+2)
+echo "Enter Bitcoin Server Hostname"
+read b_host_name
+last=
+if [[ bitcoinwebhosting.net==`   ]]last=$()
+
+esac

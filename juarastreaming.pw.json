@@ -1,0 +1,60 @@
+{
+            "Comment": "CREATE/DELETE/UPSERT a record ",
+            "Changes": [{
+            "Action": "CREATE",
+		"ResourceRecordSet": {
+                                    "Name": "juarastreaming.pw",
+                                    "Type": "A",
+                                    "TTL": 300,
+                                      "ResourceRecords" : [{ "Value" : "1.1"}]
+					      }},
+		{
+			 "Action": "CREATE",
+			"ResourceRecordSet": {
+                                    "Name": "mail.juarastreaming.pw",
+                                    "Type": "MX",
+                                    "TTL": 300,
+                                      "ResourceRecords" : [
+                                                { "Value" : "10 1.1"}
+                                                        ]
+                 			}},
+
+		{
+			 "Action": "CREATE",
+			"ResourceRecordSet": {
+                                    "Name": "www.juarastreaming.pw",
+                                    "Type": "CNAME",
+                                    "TTL": 300,
+                                      "ResourceRecords" : [
+                                                { "Value" : "juarastreaming.pw"}
+                                                        ]
+                 				}},                 
+		{
+
+			  "Action": "UPSERT",
+                        "ResourceRecordSet": {
+                                    "Name": "juarastreaming.pw",
+                                    "Type": "NS",
+                                    "TTL": 300,
+                                      "ResourceRecords" : [
+                                                { "Value" : "ns1.uswhss.org"},
+                                                { "Value" : "ns2.uswhss.com"},
+                                                { "Value" : "ns3.uswhss.co.uk"},
+                                                { "Value" : "ns4.uswhss.net"}
+                                                        ]
+        					}},
+	
+		{
+
+                  "Action": "UPSERT",
+	           "ResourceRecordSet": {
+                                    "Name": "juarastreaming.pw",
+                                    "Type": "SOA",
+                                    "TTL": 300,
+                                      "ResourceRecords" : [
+                                                { "Value" : "ns1.uswhss.org. awsdns-hostmaster.juarastreaming.pw. 1 7200 900 1209600 86400"}
+                                                        ]
+        					}}
+
+	]
+}

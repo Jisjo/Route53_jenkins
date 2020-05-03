@@ -1,0 +1,60 @@
+{
+            "Comment": "CREATE/DELETE/UPSERT a record ",
+            "Changes": [{
+            "Action": "CREATE",
+		"ResourceRecordSet": {
+                                    "Name": "thisis.in",
+                                    "Type": "A",
+                                    "TTL": 300,
+                                      "ResourceRecords" : [{ "Value" : "1"}]
+					      }},
+		{
+			 "Action": "CREATE",
+			"ResourceRecordSet": {
+                                    "Name": "mail.thisis.in",
+                                    "Type": "MX",
+                                    "TTL": 300,
+                                      "ResourceRecords" : [
+                                                { "Value" : "10 1"}
+                                                        ]
+                 			}},
+
+		{
+			 "Action": "CREATE",
+			"ResourceRecordSet": {
+                                    "Name": "www.thisis.in",
+                                    "Type": "CNAME",
+                                    "TTL": 300,
+                                      "ResourceRecords" : [
+                                                { "Value" : "thisis.in"}
+                                                        ]
+                 				}},                 
+		{
+
+			  "Action": "UPSERT",
+                        "ResourceRecordSet": {
+                                    "Name": "thisis.in",
+                                    "Type": "NS",
+                                    "TTL": 300,
+                                      "ResourceRecords" : [
+                                                { "Value" : "ns1.uswhss.org"},
+                                                { "Value" : "ns2.uswhss.com"},
+                                                { "Value" : "ns3.uswhss.co.uk"},
+                                                { "Value" : "ns4.uswhss.net"}
+                                                        ]
+        					}},
+	
+		{
+
+                  "Action": "UPSERT",
+	           "ResourceRecordSet": {
+                                    "Name": "thisis.in",
+                                    "Type": "SOA",
+                                    "TTL": 300,
+                                      "ResourceRecords" : [
+                                                { "Value" : "ns1.uswhss.org. awsdns-hostmaster.thisis.in. 1 7200 900 1209600 86400"}
+                                                        ]
+        					}}
+
+	]
+}

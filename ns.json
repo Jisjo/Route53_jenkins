@@ -1,0 +1,18 @@
+{
+            "Comment": "CREATE/DELETE/UPSERT a record ",
+            "Changes": [{
+            "Action": "UPSERT",
+                        "ResourceRecordSet":[ {
+                                    "Name": "thisisatest.com",
+                                    "Type": "NS",
+                                    "TTL": 300,
+		                      "ResourceRecords" : [
+						{ "Value" : "ns1.uswhss.org"},
+						{ "Value" : "ns2.uswhss.com"},
+						{ "Value" : "ns3.uswhss.co.uk"},
+						{ "Value" : "ns4.uswhss.net"}
+							]
+						}
+
+			}]
+}
