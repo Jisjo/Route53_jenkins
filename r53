@@ -20,7 +20,7 @@ id=$(cat out.txt | grep Location | cut -d "/" -f6 | cut -d '"' -f1| grep -oP '\b
 if [[ -z $id ]]
 then
 echo -e "\n-> \e[31m\e[1mZone not Created\e[0m"
-exit 0
+exit 1
 else
 echo -e "\n-> \e[32m\e[1mZone Created\e[0m"
 echo -e "\n-> Creating DNS record for $1"
